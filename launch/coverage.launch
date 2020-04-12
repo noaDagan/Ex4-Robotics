@@ -1,0 +1,31 @@
+
+
+
+
+
+<launch>
+    <param name="forward_speed" type="double" value="0.2"/>
+    <param name="rotation_speed" type="double" value="0.2"/>
+    <param name="d" type="double" value="0.35"/>
+    <param name="/use_sim_time" value="true" />   
+    
+    <!-- Launch turtle bot world -->
+  <include file="$(find turtlebot_gazebo)/launch/turtlebot_world.launch"/>
+
+  <param name="/use_sim_time" value="true"/>
+  <arg name="map_file" default="$(find turtlebot_gazebo)/maps/playground.pgm"/>
+    <!-- Launch navigation stack with amcl -->
+  <include file="$(find turtlebot_gazebo)/launch/amcl_demo.launch"/>
+
+    <!-- Launch rviz -->
+<!--   <include file="$(find turtlebot_rviz_launchers)/launch/view_navigation.launch"/> -->
+
+
+<!--     <arg name="map_file" default="$(find turtlebot_gazebo)/maps/playground.pgm"/> -->
+
+    <!--Publish a static transformation between /map and /odom -->
+<!--     <node name="tf" pkg="tf" type="static_transform_publisher" args="6.9 5.9 0.0 0.0 0.0 0.0 /map /odom 100"/> -->
+    <!--Launch coverage node  -->
+    <node name="coverage" pkg="coverage" type="coverage_node.py" output="screen"/>
+<!--     <rosparam file="$(find coverage)/src/global_map.yaml" command="load" /> -->
+</launch>

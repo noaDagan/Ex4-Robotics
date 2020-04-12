@@ -1,0 +1,11 @@
+<launch>  
+   <!-- Run Gazebo with turtlebot --> 
+   <include file="$(find turtlebot_gazebo)/launch/turtlebot_world.launch"/>   
+
+   <!-- Run gmapping -->
+   <node name="gmapping" pkg="gmapping" type="slam_gmapping"/>
+
+   <!-- Open rviz -->
+   <include file="$(find turtlebot_rviz_launchers)/launch/view_robot.launch"/> 
+</launch>
+
